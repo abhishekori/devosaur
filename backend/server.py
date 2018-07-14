@@ -26,8 +26,9 @@ def authHandler():
     if fb.findState(state):
         accessToken = github.getAccessToken(code)
         return redirect("https://google.co.in?q="+accessToken,code=200)
+    # TODO redirect to a error page
+    # TODO write an error page
     return "Failure"
-    #code=c689c12ca2f16bb49804&state=test
 
 if __name__ == '__main__':
    app.run(debug=True,host = '0.0.0.0')
