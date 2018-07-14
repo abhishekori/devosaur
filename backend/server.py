@@ -1,10 +1,14 @@
 from flask import Flask, request, redirect
+from flask import jsonify
+from flask_cors import CORS
+
 import uuid
 
 from firebase import Firebase
 from githubAuth import GithubAuth
 
 app = Flask(__name__)
+CORS(app)
 
 fb = Firebase()
 github = GithubAuth()
@@ -29,6 +33,14 @@ def authHandler():
     # TODO redirect to a error page
     # TODO write an error page
     return "Failure"
+
+@app.route('/', methods = ['GET', 'POST'])
+def rootApiCall():
+    return "Success"
+
+@app.route('/create-project',methods=['POST'])
+def createProject():
+    return jsonify(request.json)
 
 if __name__ == '__main__':
    app.run(debug=True,host = '0.0.0.0')
