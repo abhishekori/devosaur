@@ -23,3 +23,9 @@ class Firebase:
         common_ref = db.reference('/common')
         states_ref = common_ref.child('states')
         states_ref.push(str(state))
+
+    def findState(self,state):
+        common_ref = db.reference('/common')
+        states_ref = common_ref.child('states')
+        statePresent = state in states_ref.get().values()
+        return statePresent
