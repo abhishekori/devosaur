@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 
 const httpOptions={
   headers:new HttpHeaders({
-    'Content-Type':'application/json'
+    'Content-Type':'application/json',
+    'Accept':'application/json'
   })
 }
 const apiUrl='http://localhost:5000'
@@ -16,7 +17,12 @@ export class AppService {
   ) { }
 
   postRequest(url:string,body:any):Observable<any>{
-    
+
     return this.http.post<any>(apiUrl+url,body,httpOptions);
+  }
+
+  login() {
+    window.location.replace('http://localhost:5000/login')
+    //return this.http.get<any>(apiUrl + '/login');
   }
 }

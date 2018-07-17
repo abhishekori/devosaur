@@ -17,11 +17,11 @@ github = GithubAuth()
 def healthCheck():
     return "Success"
 
-@app.route('/getState')
+@app.route('/login')
 def getState():
     state = uuid.uuid4()
     fb.addState(state)
-    return str(state)
+    return redirect("https://github.com/login/oauth/authorize?client_id=1f5665916a21c22763b5&state="+str(state))
 
 @app.route('/auth_handler')
 def authHandler():
